@@ -1,5 +1,7 @@
 package com.example.vokulnin.cassebrique;
 
+import android.graphics.RectF;
+
 /**
  * Created by vokulnin on 25/03/2018.
  */
@@ -13,13 +15,27 @@ public class Brick {
 
 
 
-    public Brick(Game Main){
+    public Brick(Game Main , int PosX , int PosY , int Size_X , int Size_Y){
         main = Main;
+        size_X = Size_X;
+        size_Y =Size_Y;
+        pos_X = PosX;
+        pos_Y = PosY;
 
-        size_X = main.width * 0.1f;
-        size_Y = main.width * 0.1f;
-        pos_X = main.width * 0.5f;
-        pos_Y = main.height * 0.5f;
+    }
+
+    public RectF Draw(){
+        RectF raquette = new RectF(pos_X , pos_Y , pos_X + size_X , pos_Y+ size_Y);
+        return raquette;
+    }
+
+    public boolean Collide(Ball other){
+        if(Draw().intersect(other.Draw())){
+            return  true;
+        }
+        else{
+            return false;
+        }
     }
 
 }

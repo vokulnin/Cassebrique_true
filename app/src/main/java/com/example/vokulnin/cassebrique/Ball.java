@@ -28,7 +28,6 @@ public class Ball {
         pos_X = pos_X + speed_X;
         pos_Y = pos_Y + speed_Y;
         speed = (float)Math.sqrt(Math.pow(speed_X,2) + Math.pow(speed_Y,2));
-        Log.d("ballspeed" , Integer.toString((int)speed));
 
         if(in_screen()){
             Bounce();
