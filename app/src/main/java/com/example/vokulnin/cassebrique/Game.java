@@ -9,7 +9,7 @@ import android.widget.ImageView;
 public class Game extends AppCompatActivity {
     public Raquette raquette;
     public Ball balle;
-
+    //ijfe
     public ImageView test;
     public ImageView test2;
     Handler handler = new Handler();

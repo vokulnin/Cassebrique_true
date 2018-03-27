@@ -2,8 +2,10 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Cassebrique.iml" filepath="$PROJECT_DIR$/Cassebrique.iml" />
+      <module fileurl="file://C:\Users\vokulnin\Desktop\L3\azerty\Cassebrique_true\Cassebrique.iml" filepath="C:\Users\vokulnin\Desktop\L3\azerty\Cassebrique_true\Cassebrique.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Cassebrique_true.iml" filepath="$PROJECT_DIR$/Cassebrique_true.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://C:\Users\vokulnin\Desktop\L3\azerty\Cassebrique_true\app\app.iml" filepath="C:\Users\vokulnin\Desktop\L3\azerty\Cassebrique_true\app\app.iml" />
     </modules>
   </component>
 </project>
