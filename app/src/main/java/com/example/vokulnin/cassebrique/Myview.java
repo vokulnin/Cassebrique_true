@@ -7,13 +7,16 @@ import android.graphics.Paint;
 import android.graphics.RectF;
 import android.util.AttributeSet;
 import android.view.View;
+import android.view.ViewTreeObserver;
 
 public class Myview extends View {
+
     public Game main;
     public Myview(Context context , Game Main) {
         super(context);
        main = Main;
     }
+
 
     public Myview(Context context, AttributeSet attrs) {
         super(context, attrs);

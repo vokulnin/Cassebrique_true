@@ -3,12 +3,15 @@ package com.example.vokulnin.cassebrique;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.widget.ImageView;
 
 public class Game extends AppCompatActivity {
     public Raquette raquette;
     public Ball balle;
+    public float width = 1;
+    public float height = 1;
     //ijfe
     public ImageView test2;
     Handler handler = new Handler();
@@ -17,16 +20,25 @@ public class Game extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        raquette = new Raquette();
-        balle = new Ball();
-          test  = new Myview(this , this);
+        test  = new Myview(this , this);
+        width = test.getWidth();
+        height = test.getHeight();
+
+        raquette = new Raquette(this);
+        balle = new Ball(this);
+
         setContentView(test);
 
         Runnable r = new Runnable() {
             public void run() {
                 handler.postDelayed(this, 20);
+                width = test.getWidth();
+                height = test.getHeight();
                 balle.Move();
                 test.invalidate();
+                if (raquette.Collide(balle)){
+                    balle.Bounce();
+                }
 
             }
         };
@@ -37,7 +49,7 @@ public class Game extends AppCompatActivity {
     public boolean onTouchEvent(MotionEvent e) {
 
         if(e.getAction() == MotionEvent.ACTION_MOVE){
-            raquette.pos_X = e.getX();
+            raquette.Move(e.getX() , raquette.pos_Y);
         }
 
         return true;
