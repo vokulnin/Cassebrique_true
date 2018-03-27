@@ -10,34 +10,34 @@ public class Game extends AppCompatActivity {
     public Raquette raquette;
     public Ball balle;
     //ijfe
-    public ImageView test;
     public ImageView test2;
     Handler handler = new Handler();
+    public Myview test;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_game);
+        raquette = new Raquette();
+        balle = new Ball();
+          test  = new Myview(this , this);
+        setContentView(test);
 
-        test = findViewById(R.id.Raquette);
-        test2 = findViewById(R.id.Ball);
-
-        raquette = new Raquette(test);
-        balle = new Ball(test2);
         Runnable r = new Runnable() {
             public void run() {
+                handler.postDelayed(this, 20);
                 balle.Move();
-                handler.postDelayed(this, 100);
+                test.invalidate();
+
             }
         };
-        handler.postDelayed(r, 100);
+        handler.postDelayed(r, 20);
     }
 
 
     public boolean onTouchEvent(MotionEvent e) {
 
         if(e.getAction() == MotionEvent.ACTION_MOVE){
-            raquette.Move(e.getX());
+            raquette.pos_X = e.getX();
         }
 
         return true;

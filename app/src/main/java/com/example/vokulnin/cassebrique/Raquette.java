@@ -8,16 +8,17 @@ import android.widget.ImageView;
  */
 
 public class Raquette {
-    public ImageView raquette;
-    public float size_X;
-    public float size_Y;
+    public float size_X = 200;
+    public float size_Y = 50;
+    public float pos_X = 500;
+    public float pos_Y = 100;
+    public void  Move(float PosX , float PosY ) {
 
-    public void  Move(float posX ) {
-
-            raquette.setX(posX);
+            pos_X = PosX;
+        pos_Y = PosY;
     }
 
-    public Raquette(ImageView Raquette){
-        raquette = Raquette;
+    public Raquette(){
+
     }
 }
