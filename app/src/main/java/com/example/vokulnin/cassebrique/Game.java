@@ -22,6 +22,7 @@ public class Game extends AppCompatActivity {
     public float height = 1;
     public List<Brick> bricks;
     public BrickGenerator generator;
+    public GameState gamestate;
     //ijfe
     public ImageView test2;
     Handler handler = new Handler();
@@ -39,7 +40,7 @@ public class Game extends AppCompatActivity {
 
         width = test.getMeasuredWidth();
         height = test.getMeasuredHeight();
-
+        gamestate = new GameState(this);
         generator = new BrickGenerator(this,10,5);
         generator.Generate();
 
@@ -52,10 +53,12 @@ public class Game extends AppCompatActivity {
                 handler.postDelayed(this, 20);
                 width = test.getWidth();
                 height = test.getHeight();
-
+                Log.d("ball"  , Integer.toString( gamestate.Ball_left));
                 balle.Move();
                 test.invalidate();
-
+                if(balle.pos_Y > raquette.pos_Y){
+                    gamestate.Ball_lost();
+                }
                 if (raquette.Collide(balle)){
                     balle.Bounce();
                 }
@@ -63,6 +66,7 @@ public class Game extends AppCompatActivity {
                     if(bricks.get(i).Collide(balle)){
                         balle.Bounce();
                         bricks.remove(i);
+                        gamestate.score +=10;
                     }
                 }
 
@@ -75,7 +79,7 @@ public class Game extends AppCompatActivity {
     public boolean onTouchEvent(MotionEvent e) {
 
         if(e.getAction() == MotionEvent.ACTION_MOVE){
-            raquette.Move(e.getX() , raquette.pos_Y);
+            raquette.Move(e.getX() - raquette.size_X/2 , raquette.pos_Y);
         }
 
         return true;
