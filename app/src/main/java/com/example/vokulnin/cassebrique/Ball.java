@@ -52,7 +52,7 @@ public class Ball {
 
     }
     public void Bounce(){
-        angle_to_speed((float) (Math.toDegrees(convert_to_angle()) + 90));
+        angle_to_speed((float) (Math.toDegrees(convert_to_angle()) + 45));
 
     }
 

@@ -21,7 +21,7 @@ public class Game extends AppCompatActivity {
     public float width = 1;
     public float height = 1;
     public List<Brick> bricks;
-
+    public BrickGenerator generator;
     //ijfe
     public ImageView test2;
     Handler handler = new Handler();
@@ -37,12 +37,11 @@ public class Game extends AppCompatActivity {
         setContentView(test);
         //test = (Myview) findViewById(R.id.MyView);
 
-        width = test.getWidth();
-        height = test.getHeight();
+        width = test.getMeasuredWidth();
+        height = test.getMeasuredHeight();
 
-        for(int i=0;i<5 ; i++){
-            bricks.add(new Brick(this ,   110*i , 500 , 100, 50));
-        }
+        generator = new BrickGenerator(this,10,5);
+        generator.Generate();
 
 
 
