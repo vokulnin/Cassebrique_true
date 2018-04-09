@@ -30,7 +30,7 @@ public class Ball {
         speed = (float)Math.sqrt(Math.pow(speed_X,2) + Math.pow(speed_Y,2));
 
         if(in_screen()){
-            Bounce();
+           speed_X = -speed_X;
         }
     }
     public Ball(Game Main){
@@ -52,8 +52,14 @@ public class Ball {
 
     }
     public void Bounce(){
-        angle_to_speed((float) (Math.toDegrees(convert_to_angle()) + 45));
+        //angle_to_speed((float) (convert_to_angle()) + (float)Math.toRadians(70));
+        angle_to_speed((float) (Math.toRadians(  Math.toDegrees(convert_to_angle()+90))) );
 
+    }
+
+    public void Raquette_Bounce(){
+        float test =  ((main.balle.pos_X - main.raquette.pos_X) / main.raquette.size_X) * 90;
+        angle_to_speed((float)Math.toRadians( -135 + test));
     }
 
     public RectF  Draw(){

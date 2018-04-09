@@ -28,21 +28,32 @@ public class Game extends AppCompatActivity {
     Handler handler = new Handler();
     public Myview test;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public Boolean first_frame = true;
+    public Boolean generated = false;
+
+
+    public void create(){
         bricks = new ArrayList<Brick>();
         raquette = new Raquette(this);
         balle = new Ball(this);
-        test  = new Myview(this , this);
-        setContentView(test);
         //test = (Myview) findViewById(R.id.MyView);
+        width = test.getWidth();
+        height = test.getHeight();
 
-        width = test.getMeasuredWidth();
-        height = test.getMeasuredHeight();
         gamestate = new GameState(this);
         generator = new BrickGenerator(this,10,5);
-        generator.Generate();
+        //generator.Generate();
+        generated = true;
+    }
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        test  = new Myview(this , this);
+        setContentView(test);
+
+
+
+
 
 
 
@@ -50,25 +61,40 @@ public class Game extends AppCompatActivity {
 
         Runnable r = new Runnable() {
             public void run() {
-                handler.postDelayed(this, 20);
-                width = test.getWidth();
-                height = test.getHeight();
-                Log.d("ball"  , Integer.toString( gamestate.Ball_left));
-                balle.Move();
                 test.invalidate();
-                if(balle.pos_Y > raquette.pos_Y){
-                    gamestate.Ball_lost();
+
+                handler.postDelayed(this, 20);
+                if(first_frame){
+                    first_frame = false;
                 }
-                if (raquette.Collide(balle)){
-                    balle.Bounce();
-                }
-                for(int i=0;i<bricks.size();i++){
-                    if(bricks.get(i).Collide(balle)){
-                        balle.Bounce();
-                        bricks.remove(i);
-                        gamestate.score +=10;
+                else{
+
+                    if(!generated){create();
+                    generated = true;
+                    }
+                    //width = test.getWidth();
+                    //height = test.getHeight();
+                    if(gamestate.Brick_left <=0){
+                        gamestate.GameFinished();
+                    }
+                    balle.Move();
+                    if(balle.pos_Y > raquette.pos_Y + raquette.size_Y){
+                        gamestate.Ball_lost();
+                    }
+
+                    if (raquette.Collide(balle)){
+                        balle.Raquette_Bounce();
+                    }
+                    for(int i=0;i<bricks.size();i++){
+                        if(bricks.get(i).Collide(balle)){
+                            balle.Bounce();
+                            bricks.remove(i);
+                            gamestate.score +=10;
+                            gamestate.Brick_left -= 1;
+                        }
                     }
                 }
+
 
             }
         };

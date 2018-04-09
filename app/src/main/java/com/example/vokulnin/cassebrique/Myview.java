@@ -12,6 +12,7 @@ import android.view.ViewTreeObserver;
 public class Myview extends View {
 
     public Game main;
+    public Boolean first_frame = true;
     public Myview(Context context , Game Main) {
         super(context);
        main = Main;
@@ -30,17 +31,19 @@ public class Myview extends View {
     protected void onDraw(Canvas canvas) {
         // TODO Auto-generated method stub
         super.onDraw(canvas);
-
-        //RectF raquette = new RectF(main.raquette.pos_X, main.raquette.pos_Y, main.raquette.pos_X + main.raquette.size_X,main.raquette.pos_Y+  main.raquette.size_Y);
-        Paint paint = new Paint();
-        paint.setStyle(Paint.Style.STROKE);
-        paint.setColor(Color.GRAY);
-        canvas.drawRect(main.raquette.Draw(),paint);
-        canvas.drawRect(main.balle.Draw(),paint);
-        for(int i=0;i<main.bricks.size();i++){
-            canvas.drawRect(main.bricks.get(i).Draw(),paint);
+        if(first_frame){
+            first_frame = false;
         }
-
+        else {
+            Paint paint = new Paint();
+            paint.setStyle(Paint.Style.STROKE);
+            paint.setColor(Color.GRAY);
+            canvas.drawRect(main.raquette.Draw(), paint);
+            canvas.drawRect(main.balle.Draw(), paint);
+            for (int i = 0; i < main.bricks.size(); i++) {
+                canvas.drawRect(main.bricks.get(i).Draw(), paint);
+            }
+        }
     }
 
 }

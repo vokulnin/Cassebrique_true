@@ -9,7 +9,7 @@ public class GameState {
     public int score;
     public int Ball_left = 100;
     public int Brick_left;
-
+    public int level = 0;
 
     public GameState(Game Main){
         main = Main;
@@ -29,6 +29,24 @@ public class GameState {
     }
 
     public void GameFinished(){
-
+        switch (level){
+            case(0):
+            main.generator.setLevel(1,1);
+            main.generator.Generate();
+            break;
+            case(1):
+                main.generator.setLevel(1,5);
+                main.generator.Generate();
+                break;
+            case(2):
+                main.generator.setLevel(5,5);
+                main.generator.Generate();
+                break;
+            case(3):
+                main.generator.setLevel(7,7);
+                main.generator.Generate();
+                break;
+        }
+        level +=1;
     }
 }
