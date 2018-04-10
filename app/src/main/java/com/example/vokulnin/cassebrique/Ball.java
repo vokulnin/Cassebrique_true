@@ -29,8 +29,11 @@ public class Ball {
         pos_Y = pos_Y + speed_Y;
         speed = (float)Math.sqrt(Math.pow(speed_X,2) + Math.pow(speed_Y,2));
 
-        if(in_screen()){
-           speed_X = -speed_X;
+        if(touch_side()){
+            speed_X = -speed_X;
+        }
+        if(touch_up()){
+            speed_Y = -speed_Y;
         }
     }
     public Ball(Game Main){
@@ -66,7 +69,25 @@ public class Ball {
         RectF balle = new RectF(pos_X , pos_Y , pos_X + size_X , pos_Y+ size_Y);
         return balle;
     }
+    public Boolean touch_side(){
+        if(pos_X<0 || pos_X + size_X > main.width){
+            return  true;
+        }
+        else {
+            return  false;
+        }
+    }
 
+
+    public Boolean touch_up(){
+        if(pos_Y - size_Y < 0){
+            return  true;
+        }
+        else {
+            return  false;
+        }
+
+    }
     public Boolean in_screen(){
         if(pos_X>0 && pos_Y>0 && pos_X+ size_X < main.width && pos_Y + size_Y < main.height){
             return false;

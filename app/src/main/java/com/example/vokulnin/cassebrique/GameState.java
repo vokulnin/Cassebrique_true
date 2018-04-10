@@ -22,6 +22,8 @@ public class GameState {
             main.balle.speed_Y =4;
             main.balle.speed_X =0;
         }
+        main.running = false;
+
     }
 
     public void GameOver(){
@@ -33,18 +35,25 @@ public class GameState {
             case(0):
             main.generator.setLevel(1,1);
             main.generator.Generate();
+            main.running = false;
             break;
             case(1):
                 main.generator.setLevel(1,5);
                 main.generator.Generate();
+                main.running = false;
+
                 break;
             case(2):
                 main.generator.setLevel(5,5);
                 main.generator.Generate();
+                main.running = false;
+
                 break;
             case(3):
                 main.generator.setLevel(7,7);
                 main.generator.Generate();
+                main.running = false;
+
                 break;
         }
         level +=1;
