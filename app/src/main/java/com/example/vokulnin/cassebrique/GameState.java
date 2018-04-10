@@ -1,5 +1,9 @@
 package com.example.vokulnin.cassebrique;
 
+import android.content.Intent;
+
+import static android.support.v4.content.ContextCompat.startActivity;
+
 /**
  * Created by vokulnin on 28/03/2018.
  */
@@ -15,6 +19,8 @@ public class GameState {
         main = Main;
     }
     public void Ball_lost(){
+        main.chargeScore();
+
         Ball_left -= 1;
         if(Ball_left>=0){
             main.balle.pos_Y = main.height/2;

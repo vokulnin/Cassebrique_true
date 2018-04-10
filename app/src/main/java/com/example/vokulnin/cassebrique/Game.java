@@ -1,5 +1,6 @@
 package com.example.vokulnin.cassebrique;
 
+import android.content.Intent;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -15,6 +16,9 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static android.support.v4.content.ContextCompat.startActivity;
+import static java.security.AccessController.getContext;
 
 public class Game extends AppCompatActivity {
     public Raquette raquette;
@@ -50,11 +54,21 @@ public class Game extends AppCompatActivity {
         balle.pos_X = width * 0.5f;
         balle.pos_Y = height * 0.5f;
     }
+
+    public void chargeScore(){
+        Intent intent = new Intent(this , Menu.class );
+        intent.putExtra("score" , gamestate.score);
+        startActivity(intent);
+        this.finish();
+
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //test  = new Myview(this , this);
         //setContentView(test);
+
+
         setContentView(R.layout.activity_game);
         test = (Myview)findViewById(R.id.view);
         test.main = this;
