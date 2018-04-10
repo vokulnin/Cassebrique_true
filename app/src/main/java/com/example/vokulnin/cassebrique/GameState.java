@@ -11,7 +11,7 @@ import static android.support.v4.content.ContextCompat.startActivity;
 public class GameState {
     public Game main;
     public int score;
-    public int Ball_left = 100;
+    public int Ball_left = 3;
     public int Brick_left;
     public int level = 0;
 
@@ -19,7 +19,6 @@ public class GameState {
         main = Main;
     }
     public void Ball_lost(){
-        main.chargeScore();
 
         Ball_left -= 1;
         if(Ball_left>=0){
@@ -28,12 +27,15 @@ public class GameState {
             main.balle.speed_Y =4;
             main.balle.speed_X =0;
         }
+        else {
+            GameOver();
+        }
         main.running = false;
 
     }
 
     public void GameOver(){
-
+    main.chargeScore(false);
     }
 
     public void GameFinished(){
@@ -49,18 +51,24 @@ public class GameState {
                 main.running = false;
 
                 break;
-            case(2):
+            case(6):
                 main.generator.setLevel(5,5);
                 main.generator.Generate();
                 main.running = false;
 
                 break;
-            case(3):
+            case(5):
                 main.generator.setLevel(7,7);
                 main.generator.Generate();
                 main.running = false;
 
                 break;
+                default:
+                    main.chargeScore(true);
+                    break;
+
+
+
         }
         level +=1;
     }

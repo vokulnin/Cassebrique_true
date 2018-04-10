@@ -9,17 +9,21 @@
     <com.example.vokulnin.cassebrique.Myview
         android:id="@+id/view"
         android:layout_width="wrap_content"
-        android:layout_height="860dp"
-        android:layout_marginBottom="88dp"
+        android:layout_height="454dp"
+        android:layout_marginBottom="48dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        tools:layout_editor_absoluteX="0dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/score"
-        android:layout_width="89dp"
-        android:layout_height="25dp"
+        android:layout_width="0dp"
+        android:layout_height="31dp"
         android:layout_marginBottom="16dp"
-        android:layout_marginEnd="292dp"
+        android:layout_marginEnd="296dp"
         android:text="score : 100"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
@@ -28,18 +32,20 @@
         android:id="@+id/life"
         android:layout_width="103dp"
         android:layout_height="30dp"
-        android:layout_marginBottom="11dp"
-        android:layout_marginStart="15dp"
+        android:layout_marginBottom="16dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
         android:text="Ball left : 1"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/level"
         app:layout_constraintStart_toEndOf="@+id/score" />
 
     <TextView
         android:id="@+id/level"
         android:layout_width="116dp"
         android:layout_height="31dp"
-        android:layout_marginBottom="11dp"
-        android:layout_marginEnd="34dp"
+        android:layout_marginBottom="16dp"
+        android:layout_marginEnd="16dp"
         android:text="Level 1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />

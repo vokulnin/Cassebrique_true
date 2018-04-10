@@ -55,20 +55,20 @@ public class Game extends AppCompatActivity {
         balle.pos_Y = height * 0.5f;
     }
 
-    public void chargeScore(){
-        Intent intent = new Intent(this , Menu.class );
+    public void chargeScore(Boolean won){
+        Intent intent = new Intent(this , Result.class );
         intent.putExtra("score" , gamestate.score);
+        intent.putExtra("Won" , won);
+
         startActivity(intent);
         this.finish();
-
     }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //test  = new Myview(this , this);
         //setContentView(test);
-
-
         setContentView(R.layout.activity_game);
         test = (Myview)findViewById(R.id.view);
         test.main = this;
