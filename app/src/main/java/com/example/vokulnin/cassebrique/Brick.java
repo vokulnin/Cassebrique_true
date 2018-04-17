@@ -2,12 +2,15 @@ package com.example.vokulnin.cassebrique;
 
 import android.graphics.RectF;
 
+import java.io.Serializable;
+
 /**
  * Created by vokulnin on 25/03/2018.
  */
 
-public class Brick {
-    public Game main;
+public class Brick implements Serializable{
+
+    public transient  Game main;
     public float size_X ;
     public float size_Y ;
     public float pos_X ;

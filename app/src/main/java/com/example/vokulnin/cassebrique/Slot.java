@@ -1,12 +1,13 @@
 package com.example.vokulnin.cassebrique;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by CollFnac on 17/04/2018.
  */
 
-public class Slot {
+public class Slot  implements Serializable {
     public String name;
     public List<Brick> bricks;
     public int level;

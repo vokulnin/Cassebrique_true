@@ -21,10 +21,12 @@ public class Save implements Serializable {
     public Game main ;
     public static Save ref;
     public static Context context;
-    public static List<Slot> saves;
+    public  List<Slot> saves;
+    public  List<Slot> savees;
+
     //public File save_file = new File(context.getFilesDir(), "saves");
-
-
+    public Slot test;
+    public Boolean saved = false;
     public Save(){
 
         if(Load() == null){
@@ -35,7 +37,6 @@ public class Save implements Serializable {
             saves = Load();
         }
 
-
     }
     public void saveObject() {
         File file = new File(context.getFilesDir(), "saves");
@@ -43,9 +44,10 @@ public class Save implements Serializable {
         try {
             ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(file)); //Select where you wish to save the file...
             oos.writeObject(saves); // write the class as an 'object'
+            saved = true;
 
-        } catch (Exception ex) {
-            ex.printStackTrace();
+        } catch (Exception exr) {
+            exr.printStackTrace();
         }
     }
 
@@ -55,11 +57,12 @@ public class Save implements Serializable {
         {
             ObjectInputStream ois = new ObjectInputStream(new FileInputStream(new File(context.getFilesDir(), "saves")));
             List<Slot> o = (List<Slot>)ois.readObject();
+
             return o;
         }
-        catch(Exception ex)
+        catch(Exception exw)
         {
-            ex.printStackTrace();
+            exw.printStackTrace();
         }
         return null;
     }
