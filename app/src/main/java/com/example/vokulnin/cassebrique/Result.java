@@ -32,7 +32,15 @@ public class Result extends AppCompatActivity {
         score = findViewById(R.id.score);
         status = findViewById(R.id.status);
         quit = findViewById(R.id.quit);
+        menu = findViewById(R.id.menu);
 
+
+        menu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                menu();
+            }
+        });
         quit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -53,19 +61,20 @@ public class Result extends AppCompatActivity {
         });
     }
 
+
+
     public void restart(){
         Intent intent = new Intent(this, Game.class);
         //intent.putExtra("score" , gamestate.score);
         startActivity(intent);
     }
-    public boolean onTouchEvent(MotionEvent e) {
 
-        if(e.getAction() == MotionEvent.ACTION_MOVE){
-
-        }
-
-        return true;
+    public void menu(){
+        Intent intent = new Intent(this, Menu.class);
+        //intent.putExtra("score" , gamestate.score);
+        startActivity(intent);
     }
+
     public void onClick(View v) {
         status.setText("pressed");
 

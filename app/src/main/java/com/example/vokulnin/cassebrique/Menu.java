@@ -26,7 +26,7 @@ public class Menu extends AppCompatActivity {
         this.finish();
     }
     public void Score(){
-        Intent intent = new Intent(this , Game.class );
+        Intent intent = new Intent(this , Score.class );
         startActivity(intent);
         this.finish();
     }
@@ -39,7 +39,8 @@ public class Menu extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
-
+        Save.context = this.getApplicationContext();
+        Save.ref = new Save();
         start = findViewById(R.id.New);
         load = findViewById(R.id.Load);
         score = findViewById(R.id.Score);
@@ -54,6 +55,12 @@ public class Menu extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Start();
+            }
+        });
+        score.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Score();
             }
         });
 

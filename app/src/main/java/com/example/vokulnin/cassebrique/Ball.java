@@ -18,7 +18,7 @@ public class Ball {
     public float size_Y ;
     public float pos_X  = 100;
     public float pos_Y  = 10;
-    public float speed_X = 1.5f;
+    public float speed_X = 15f;
     public float speed_Y = 4f;
     public float speed;
 

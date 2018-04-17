@@ -39,6 +39,15 @@ public class Game extends AppCompatActivity {
     public Boolean generated = false;
     public Boolean running ;
 
+    public void save(){
+        Slot toSave = new Slot("test" , bricks , gamestate.level , gamestate.score , gamestate.Ball_left);
+        Save.ref.saves.add(toSave);
+        Save.ref.saveObject();
+    }
+
+    public void onLoad(Slot LoadData){
+
+    }
     public void create(){
         bricks = new ArrayList<Brick>();
         raquette = new Raquette(this);
@@ -53,6 +62,7 @@ public class Game extends AppCompatActivity {
         generated = true;
         balle.pos_X = width * 0.5f;
         balle.pos_Y = height * 0.5f;
+
     }
 
     public void chargeScore(Boolean won){
@@ -64,6 +74,13 @@ public class Game extends AppCompatActivity {
         this.finish();
     }
 
+    @Override
+    public void onDestroy() {
+
+        super.onDestroy();
+        save();
+
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

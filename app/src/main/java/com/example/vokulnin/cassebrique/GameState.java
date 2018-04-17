@@ -41,24 +41,18 @@ public class GameState {
     public void GameFinished(){
         switch (level){
             case(0):
-            main.generator.setLevel(1,1);
+            main.generator.setLevel(5,2);
             main.generator.Generate();
             main.running = false;
             break;
             case(1):
-                main.generator.setLevel(1,5);
+                main.generator.setLevel(4,5);
                 main.generator.Generate();
                 main.running = false;
 
                 break;
             case(6):
                 main.generator.setLevel(5,5);
-                main.generator.Generate();
-                main.running = false;
-
-                break;
-            case(5):
-                main.generator.setLevel(7,7);
                 main.generator.Generate();
                 main.running = false;
 
