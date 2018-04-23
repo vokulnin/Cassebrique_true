@@ -24,8 +24,8 @@ public class GameState {
         if(Ball_left>=0){
             main.balle.pos_Y = main.height/2;
             main.balle.pos_X = main.width/2;
-            main.balle.speed_Y =4;
-            main.balle.speed_X =0;
+           // main.balle.speed_Y =15f;
+            //main.balle.speed_X =4;
         }
         else {
             GameOver();

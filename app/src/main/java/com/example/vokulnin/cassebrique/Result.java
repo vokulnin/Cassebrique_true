@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import org.w3c.dom.Text;
@@ -20,9 +21,13 @@ public class Result extends AppCompatActivity {
 
     public TextView score;
     public TextView status;
+    public EditText name;
+
     public Button restart;
     public Button menu;
     public Button quit;
+    public Button save;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,6 +38,8 @@ public class Result extends AppCompatActivity {
         status = findViewById(R.id.status);
         quit = findViewById(R.id.quit);
         menu = findViewById(R.id.menu);
+        name = findViewById(R.id.name);
+        save = findViewById(R.id.save);
 
 
         menu.setOnClickListener(new View.OnClickListener() {
@@ -41,6 +48,14 @@ public class Result extends AppCompatActivity {
                 menu();
             }
         });
+        save.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Save.ref.scores.add(new ScoreSlot(name.getText().toString(),getIntent().getExtras().getInt("score")));
+                Save.ref.saveScores();
+            }
+        });
+
         quit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -65,6 +80,8 @@ public class Result extends AppCompatActivity {
 
     public void restart(){
         Intent intent = new Intent(this, Game.class);
+        intent.putExtra("load" , false);
+
         //intent.putExtra("score" , gamestate.score);
         startActivity(intent);
     }

@@ -27,7 +27,7 @@ import static android.support.v4.content.ContextCompat.startActivity;
 public class ListAdapter extends ArrayAdapter<Slot> {
 
     private final Context context;
-
+    public Score test;
     public ListAdapter(Context context, List<Slot> values) {
         super(context, R.layout.test, values);
         this.context = context;

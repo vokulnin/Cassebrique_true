@@ -18,6 +18,10 @@
             android:screenOrientation="portrait">
 
         </activity>
+        <activity android:name=".Score2"
+            android:screenOrientation="portrait">
+
+        </activity>
 
         <activity android:name=".Menu">
         <intent-filter>

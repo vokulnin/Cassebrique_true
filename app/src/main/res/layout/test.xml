@@ -22,6 +22,12 @@
             android:layout_height="wrap_content"
             tools:text="Score : 300" />
 
+        <TextView
+            android:id="@+id/date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:text="23/09/1996" />
+
     </LinearLayout>
 
     <Button

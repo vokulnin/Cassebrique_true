@@ -11,6 +11,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -22,9 +23,8 @@ public class Save implements Serializable {
     public static Save ref;
     public static Context context;
     public  List<Slot> saves;
-    public  List<Slot> savees;
+    public  List<ScoreSlot> scores;
 
-    //public File save_file = new File(context.getFilesDir(), "saves");
     public Slot test;
     public Boolean saved = false;
     public Save(){
@@ -33,8 +33,13 @@ public class Save implements Serializable {
             saves = new ArrayList<Slot>();
         }
         else{
-
             saves = Load();
+        }
+        if(LoadScore() == null){
+            scores = new ArrayList<ScoreSlot>();
+        }
+        else{
+            scores = LoadScore();
         }
 
     }
@@ -51,12 +56,42 @@ public class Save implements Serializable {
         }
     }
 
+    public void saveScores() {
+        File file = new File(context.getFilesDir(), "scores");
+
+        try {
+            Collections.sort(scores);
+            ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(file)); //Select where you wish to save the file...
+            oos.writeObject(scores); // write the class as an 'object'
+            saved = true;
+
+        } catch (Exception exr) {
+            exr.printStackTrace();
+        }
+    }
+
     public List<Slot>  Load ()
     {
         try
         {
             ObjectInputStream ois = new ObjectInputStream(new FileInputStream(new File(context.getFilesDir(), "saves")));
             List<Slot> o = (List<Slot>)ois.readObject();
+
+            return o;
+        }
+        catch(Exception exw)
+        {
+            exw.printStackTrace();
+        }
+        return null;
+    }
+
+    public List<ScoreSlot>  LoadScore ()
+    {
+        try
+        {
+            ObjectInputStream ois = new ObjectInputStream(new FileInputStream(new File(context.getFilesDir(), "scores")));
+            List<ScoreSlot> o = (List<ScoreSlot>)ois.readObject();
 
             return o;
         }

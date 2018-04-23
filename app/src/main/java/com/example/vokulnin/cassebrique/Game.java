@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,6 +39,8 @@ public class Game extends AppCompatActivity {
     public Boolean first_frame = true;
     public Boolean generated = false;
     public Boolean running ;
+    public Boolean load = false ;
+
 
     public void save(){
         Slot toSave = new Slot("test" , bricks , gamestate.level , gamestate.score , gamestate.Ball_left);
@@ -49,6 +52,7 @@ public class Game extends AppCompatActivity {
 
     }
     public void create(){
+
         bricks = new ArrayList<Brick>();
         raquette = new Raquette(this);
         balle = new Ball(this);
@@ -57,8 +61,22 @@ public class Game extends AppCompatActivity {
         height = test.getHeight();
         running = false;
         gamestate = new GameState(this);
-        generator = new BrickGenerator(this,10,5);
-        //generator.Generate();
+        generator = new BrickGenerator(this,1,1);
+
+        if(load == true) {
+            {
+                Slot load = (Slot) getIntent().getExtras().getSerializable("info");
+
+
+                gamestate.level = load.level;
+                gamestate.score = load.score;
+                gamestate.Brick_left = load.bricks.size();
+                gamestate.Ball_left = load.ball_left;
+                for (int i = 0; i < load.bricks.size(); i++) {
+                    bricks.add(load.bricks.get(i));
+                }
+            }
+        }
         generated = true;
         balle.pos_X = width * 0.5f;
         balle.pos_Y = height * 0.5f;
@@ -84,6 +102,8 @@ public class Game extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        load = getIntent().getExtras().getBoolean("load");
+
         //test  = new Myview(this , this);
         //setContentView(test);
         setContentView(R.layout.activity_game);

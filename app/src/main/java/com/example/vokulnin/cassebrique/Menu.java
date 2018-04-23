@@ -17,11 +17,13 @@ public class Menu extends AppCompatActivity {
 
     public void Start(){
         Intent intent = new Intent(this , Game.class );
+        intent.putExtra("load" , false);
+
         startActivity(intent);
         this.finish();
     }
     public void Load(){
-        Intent intent = new Intent(this , Game.class );
+        Intent intent = new Intent(this , Score2.class );
         startActivity(intent);
         this.finish();
     }
@@ -61,6 +63,12 @@ public class Menu extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Score();
+            }
+        });
+        load.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Load();
             }
         });
 

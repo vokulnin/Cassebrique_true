@@ -39,8 +39,8 @@ public class Ball {
     public Ball(Game Main){
         main = Main;
 
-        size_X = main.width * 0.1f;
-        size_Y = main.width * 0.1f;
+        size_X = main.width * 0.25f;
+        size_Y = main.width * 0.25f;
         pos_X = main.width * 0.5f;
         pos_Y = main.height * 0.5f;
 

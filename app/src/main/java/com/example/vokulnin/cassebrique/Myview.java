@@ -40,13 +40,12 @@ public class Myview extends View {
                 Paint paint = new Paint();
                 paint.setStyle(Paint.Style.STROKE);
                 paint.setColor(Color.GRAY);
-                Log.d("canvas", Integer.toString(canvas.getWidth()));
-                Log.d("canvas", Integer.toString((int) main.raquette.pos_X));
-
-                canvas.drawRect(main.raquette.Draw(), paint);
-                canvas.drawRect(main.balle.Draw(), paint);
+                Paint pa1= new Paint();
+                pa1.setColor(Color.GRAY);
+                canvas.drawRect(main.raquette.Draw(), pa1);
+                canvas.drawRect(main.balle.Draw(), pa1);
                 for (int i = 0; i < main.bricks.size(); i++) {
-                    canvas.drawRect(main.bricks.get(i).Draw(), paint);
+                    canvas.drawRect(main.bricks.get(i).Draw(),pa1);
                 }
             }
         }
