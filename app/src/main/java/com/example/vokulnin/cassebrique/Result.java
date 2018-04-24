@@ -27,12 +27,12 @@ public class Result extends AppCompatActivity {
     public Button menu;
     public Button quit;
     public Button save;
-
+    public boolean saved = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //test  = new Myview(this , this);
-        //setContentView(test);
+        //saveslot  = new Myview(this , this);
+        //setContentView(saveslot);
         setContentView(R.layout.activity_result);
         score = findViewById(R.id.score);
         status = findViewById(R.id.status);
@@ -51,8 +51,11 @@ public class Result extends AppCompatActivity {
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Save.ref.scores.add(new ScoreSlot(name.getText().toString(),getIntent().getExtras().getInt("score")));
-                Save.ref.saveScores();
+                if(!saved) {
+                    Save.ref.scores.add(new ScoreSlot(name.getText().toString(), getIntent().getExtras().getInt("score")));
+                    Save.ref.saveScores();
+                    saved = true;
+                }
             }
         });
 

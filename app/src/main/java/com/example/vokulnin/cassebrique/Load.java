@@ -15,13 +15,11 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
-import static android.support.v4.content.ContextCompat.startActivity;
-
 /**
  * Created by CollFnac on 16/04/2018.
  */
 
-public class Score2 extends AppCompatActivity {
+public class Load extends AppCompatActivity {
     public ListView list;
     public Slot selectioned;
     public void load(){
@@ -36,9 +34,9 @@ public class Score2 extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_score2);
+        setContentView(R.layout.activity_score);
         List<Slot> test2 = new ArrayList<Slot>();
-        ListAdapter2 test = new ListAdapter2(this , Save.ref.scores);
+        ListAdapter2 test = new ListAdapter2(this , Save.ref.saves);
 
         list = findViewById(R.id.List);
         list.setAdapter(test);
@@ -47,19 +45,18 @@ public class Score2 extends AppCompatActivity {
     }
 
 
-    public class ListAdapter2 extends ArrayAdapter<ScoreSlot> {
+    public class ListAdapter2 extends ArrayAdapter<Slot> {
 
         private final Context context;
-        public Score test;
-
-        public ListAdapter2(Context context, List<ScoreSlot> values) {
-            super(context, R.layout.scoreslot, values);
+        public Load test;
+        public ListAdapter2(Context context, List<Slot> values) {
+            super(context, R.layout.test, values);
             this.context = context;
         }
         public void delete(){
-            Intent intent = new Intent(Score2.this , Game.class );
+            Intent intent = new Intent(Load.this , Game.class );
             startActivity(intent);
-            Score2.this.finish();
+            Load.this.finish();
         }
 
 
@@ -75,15 +72,34 @@ public class Score2 extends AppCompatActivity {
 
 
 
-            final ScoreSlot t = getItem(position);
+            final Slot t = getItem(position);
 
-            TextView nameView = (TextView) cellView.findViewById(R.id.name);
-            TextView scoreView = (TextView) cellView.findViewById(R.id.score);
+            TextView levelView = (TextView) cellView.findViewById(R.id.Level);
+            TextView scoreView = (TextView) cellView.findViewById(R.id.Score);
+            TextView dateView = (TextView) cellView.findViewById(R.id.date);
 
+            Button delete = (Button) cellView.findViewById(R.id.Delete);
+            Button load = (Button) cellView.findViewById(R.id.Load);
+            levelView.setText("level : " + Integer.toString( t.level));
             scoreView.setText("score : " + Integer.toString(t.score));
-            nameView.setText(t.name);
+            dateView.setText(t.date );
+            load.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Load.this.selectioned = t;
+                    Load.this.load();
+
+                }
+            });
+            delete.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Save.ref.saves.remove(position);
+                    list.invalidateViews();
 
 
+                }
+            });
 
 
 

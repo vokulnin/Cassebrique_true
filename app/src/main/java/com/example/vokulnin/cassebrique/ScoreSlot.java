@@ -6,9 +6,6 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
-/**
- * Created by CollFnac on 17/04/2018.
- */
 
 public class ScoreSlot  implements Serializable , Comparable<ScoreSlot>{
     public String name;
@@ -23,6 +20,12 @@ public class ScoreSlot  implements Serializable , Comparable<ScoreSlot>{
 
     @Override
     public int compareTo(@NonNull ScoreSlot toSort) {
-        return score;
+        if (score > toSort.score){
+            return -1;
+        }
+        if (score < toSort.score){
+            return 1;
+        }
+        return 0;
     }
 }

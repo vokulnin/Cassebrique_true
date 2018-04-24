@@ -4,22 +4,12 @@ import android.content.Intent;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.widget.ImageView;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
-import android.widget.EditText;
 import android.widget.TextView;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-
-import static android.support.v4.content.ContextCompat.startActivity;
-import static java.security.AccessController.getContext;
 
 public class Game extends AppCompatActivity {
     public Raquette raquette;
@@ -34,12 +24,13 @@ public class Game extends AppCompatActivity {
     public TextView life;
     public TextView level;
     Handler handler = new Handler();
-    public Myview test;
+    public CanvasView test;
 
     public Boolean first_frame = true;
     public Boolean generated = false;
     public Boolean running ;
     public Boolean load = false ;
+    public Boolean game_over_generated = false ;
 
 
     public void save(){
@@ -96,7 +87,9 @@ public class Game extends AppCompatActivity {
     public void onDestroy() {
 
         super.onDestroy();
-        save();
+        if(gamestate.Ball_left>=0) {
+            save();
+        }
 
     }
     @Override
@@ -107,7 +100,7 @@ public class Game extends AppCompatActivity {
         //test  = new Myview(this , this);
         //setContentView(test);
         setContentView(R.layout.activity_game);
-        test = (Myview)findViewById(R.id.view);
+        test = (CanvasView)findViewById(R.id.view);
         test.main = this;
         score = findViewById(R.id.score);
         life = findViewById(R.id.life);
@@ -131,10 +124,11 @@ public class Game extends AppCompatActivity {
 
                     //width = test.getWidth();
                     //height = test.getHeight();
-                    if(gamestate.Brick_left <=0){
-                        gamestate.GameFinished();
-                    }
+
                     if(running){
+                        if(gamestate.Brick_left <=0){
+                            gamestate.GameFinished();
+                        }
                     balle.Move();
                         if(balle.pos_Y > raquette.pos_Y + raquette.size_Y){
                             gamestate.Ball_lost();

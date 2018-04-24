@@ -10,21 +10,21 @@ import android.util.Log;
 import android.view.View;
 import android.view.ViewTreeObserver;
 
-public class Myview extends View {
+public class CanvasView extends View {
 
     public Game main;
     public Boolean first_frame = true;
-    public Myview(Context context , Game Main) {
+    public CanvasView(Context context , Game Main) {
         super(context);
        main = Main;
     }
 
 
-    public Myview(Context context, AttributeSet attrs) {
+    public CanvasView(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 
-    public Myview(Context context, AttributeSet attrs, int defStyle) {
+    public CanvasView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
     }
 

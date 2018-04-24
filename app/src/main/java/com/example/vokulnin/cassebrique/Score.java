@@ -8,18 +8,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static android.support.v4.content.ContextCompat.startActivity;
-
-/**
- * Created by CollFnac on 16/04/2018.
- */
 
 public class Score extends AppCompatActivity {
     public ListView list;
@@ -36,9 +30,9 @@ public class Score extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_score);
+        setContentView(R.layout.activity_score2);
         List<Slot> test2 = new ArrayList<Slot>();
-        ListAdapter2 test = new ListAdapter2(this , Save.ref.saves);
+        ListAdapter2 test = new ListAdapter2(this , Save.ref.scores);
 
         list = findViewById(R.id.List);
         list.setAdapter(test);
@@ -47,12 +41,13 @@ public class Score extends AppCompatActivity {
     }
 
 
-    public class ListAdapter2 extends ArrayAdapter<Slot> {
+    public class ListAdapter2 extends ArrayAdapter<ScoreSlot> {
 
         private final Context context;
-        public Score test;
-        public ListAdapter2(Context context, List<Slot> values) {
-            super(context, R.layout.test, values);
+        public Load test;
+
+        public ListAdapter2(Context context, List<ScoreSlot> values) {
+            super(context, R.layout.scoreslot, values);
             this.context = context;
         }
         public void delete(){
@@ -69,39 +64,20 @@ public class Score extends AppCompatActivity {
             if (cellView == null) {
                 LayoutInflater inflater = (LayoutInflater) context
                         .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                cellView = inflater.inflate(R.layout.test, parent, false);
+                cellView = inflater.inflate(R.layout.scoreslot, parent, false);
             }
 
 
 
-            final Slot t = getItem(position);
+            final ScoreSlot t = getItem(position);
 
-            TextView levelView = (TextView) cellView.findViewById(R.id.Level);
-            TextView scoreView = (TextView) cellView.findViewById(R.id.Score);
-            TextView dateView = (TextView) cellView.findViewById(R.id.date);
+            TextView nameView = (TextView) cellView.findViewById(R.id.name);
+            TextView scoreView = (TextView) cellView.findViewById(R.id.score);
 
-            Button delete = (Button) cellView.findViewById(R.id.Delete);
-            Button load = (Button) cellView.findViewById(R.id.Load);
-            levelView.setText("level : " + Integer.toString( t.level));
             scoreView.setText("score : " + Integer.toString(t.score));
-            dateView.setText(t.date );
-            load.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Score.this.selectioned = t;
-                    Score.this.load();
-
-                }
-            });
-            delete.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Save.ref.saves.remove(position);
-                    list.invalidateViews();
+            nameView.setText(t.name);
 
 
-                }
-            });
 
 
 

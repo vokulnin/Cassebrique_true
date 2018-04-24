@@ -23,14 +23,12 @@ public class Menu extends AppCompatActivity {
         this.finish();
     }
     public void Load(){
-        Intent intent = new Intent(this , Score2.class );
+        Intent intent = new Intent(this , Load.class );
         startActivity(intent);
-        this.finish();
     }
     public void Score(){
         Intent intent = new Intent(this , Score.class );
         startActivity(intent);
-        this.finish();
     }
 
     public void Exit(){

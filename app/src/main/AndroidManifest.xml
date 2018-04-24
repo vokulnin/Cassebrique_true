@@ -18,13 +18,15 @@
             android:screenOrientation="portrait">
 
         </activity>
-        <activity android:name=".Score2"
+        <activity android:name=".Load"
             android:screenOrientation="portrait">
 
         </activity>
 
-        <activity android:name=".Menu">
-        <intent-filter>
+        <activity android:name=".Menu"
+            android:screenOrientation="portrait">
+
+            <intent-filter>
             <action android:name="android.intent.action.MAIN" />
 
             <category android:name="android.intent.category.LAUNCHER" />

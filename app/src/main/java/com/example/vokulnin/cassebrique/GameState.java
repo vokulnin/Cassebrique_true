@@ -28,14 +28,19 @@ public class GameState {
             //main.balle.speed_X =4;
         }
         else {
-            GameOver();
+            if(main.running) {
+                main.running = false;
+
+                GameOver();
+            }
+
         }
-        main.running = false;
 
     }
 
     public void GameOver(){
-    main.chargeScore(false);
+        main.running = false;
+        main.chargeScore(false);
     }
 
     public void GameFinished(){
@@ -51,13 +56,14 @@ public class GameState {
                 main.running = false;
 
                 break;
-            case(6):
+            case(2):
                 main.generator.setLevel(5,5);
                 main.generator.Generate();
                 main.running = false;
 
                 break;
                 default:
+                    main.running = false;
                     main.chargeScore(true);
                     break;
 
